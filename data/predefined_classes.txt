@@ -1,4 +1,7 @@
-01-hair
-02-skin
-03-body
-None
+01-Disk
+02-Cup
+03-Hemangioma
+04-hard exudate
+05Soft exudation
+06Macula
+07macula fovea

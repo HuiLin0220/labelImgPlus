@@ -1,7 +1,8 @@
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5 import QtWidgets
-
+import socket
+import re
 
 
 class SettingDialog(QtWidgets.QDialog):
@@ -15,8 +16,7 @@ class SettingDialog(QtWidgets.QDialog):
         self.resize(320, 240)
         self.__class__.task_mode = config['task_mode']
         self.__class__.label_font_size = config['label_font_size']
-        self.init_UI() # 初始化UI
-    
+        self.init_UI()
     def createModeGroup(self):
         '''
         set the trask mode setting group
@@ -25,11 +25,11 @@ class SettingDialog(QtWidgets.QDialog):
         self.modegroupBox = QtWidgets.QGroupBox("& Task Mode")
         self.modegroupBox.setCheckable(True)
         self.modegroupBox.setChecked(True)
-        self.CLS_mode_rb = QtWidgets.QRadioButton("分类 Mode")
+        self.CLS_mode_rb = QtWidgets.QRadioButton("CLS Mode")
         self.CLS_mode_rb.clicked.connect(self.CLS_model_selected)
-        self.DET_mode_rb = QtWidgets.QRadioButton("检测 Mode")
+        self.DET_mode_rb = QtWidgets.QRadioButton("DET Mode")
         self.DET_mode_rb.clicked.connect(self.DET_model_selected)
-        self.SEG_mode_rb = QtWidgets.QRadioButton("分割 Mode")
+        self.SEG_mode_rb = QtWidgets.QRadioButton("SEG Mode")
         self.SEG_mode_rb.clicked.connect(self.SEG_model_selected)
 
         vbox = QtWidgets.QVBoxLayout()
@@ -43,7 +43,7 @@ class SettingDialog(QtWidgets.QDialog):
 
     
     def createDEToptGroup(self):
-        self.detgroupBox = QtWidgets.QGroupBox("& 检测 options")
+        self.detgroupBox = QtWidgets.QGroupBox("& DET options")
         self.enable_show_label_cb = QtWidgets.QCheckBox('enable show label name')
         self.label_font_size_sl = QtWidgets.QSlider(Qt.Horizontal)
         self.label_font_size_sl.setRange(5,50)
@@ -54,7 +54,7 @@ class SettingDialog(QtWidgets.QDialog):
         self.label_font_size_sl.setValue(self.__class__.label_font_size)
         vbox = QtWidgets.QVBoxLayout()
         vbox.addWidget(self.enable_show_label_cb)
-        vbox.addWidget(QtWidgets.QLabel('标签字体大小'))
+        vbox.addWidget(QtWidgets.QLabel('label font size'))
         vbox.addWidget(self.label_font_size_sl)
         vbox.addWidget(self.label_font_size_sp)
         vbox.addStretch()
@@ -71,7 +71,7 @@ class SettingDialog(QtWidgets.QDialog):
 
 
     def createCLSoptGroup(self):
-        self.clsgroupBox = QtWidgets.QGroupBox("& 分类 options")
+        self.clsgroupBox = QtWidgets.QGroupBox("& CLS options")
         #self.single_label_rb = QtGui.QRadioButton("single label")
         #self.multi_label_rb = QtGui.QRadioButton("multi label")
         vbox = QtWidgets.QVBoxLayout()
@@ -82,7 +82,7 @@ class SettingDialog(QtWidgets.QDialog):
         return self.clsgroupBox
 
     def createSEGoptGroup(self):
-        self.seggroupBox = QtWidgets.QGroupBox("& 分割 options")
+        self.seggroupBox = QtWidgets.QGroupBox("& SEG options")
         self.enable_color_map_cb = QtWidgets.QCheckBox('enable color map')
         if self.__class__.enable_color_map:
             self.enable_color_map_cb.toggle()

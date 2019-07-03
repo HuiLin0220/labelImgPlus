@@ -1,9 +1,10 @@
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 #from PyQt4.QtOpenGL import *
 
-from shape import Shape
-from lib import distance
+from .shape import Shape
+from .lib import distance
 
 CURSOR_DEFAULT = Qt.ArrowCursor
 CURSOR_POINT = Qt.PointingHandCursor
@@ -66,7 +67,7 @@ class Canvas(QWidget):
             self.line.set_shape_type(type)
             return True
         else:
-            print "not support the shape type: " + str(type)
+            print ("not support the shape type: " + str(type))
             return False
 
     def enterEvent(self, ev):
@@ -103,7 +104,7 @@ class Canvas(QWidget):
 
     def mouseMoveEvent(self, ev):
         """Update line with last point and current coordinates."""
-        pos = self.transformPos(ev.posF())
+        pos = self.transformPos(ev.pos())
 
         self.restoreCursor()
 
@@ -190,7 +191,7 @@ class Canvas(QWidget):
             self.hVertex, self.hShape = None, None
 
     def mousePressEvent(self, ev):
-        pos = self.transformPos(ev.posF())
+        pos = self.transformPos(ev.pos())
         if ev.button() == Qt.LeftButton:
             if self.drawing():
                 if self.shape_type == self.POLYGON_SHAPE and self.current:
@@ -524,22 +525,22 @@ class Canvas(QWidget):
         return super(Canvas, self).minimumSizeHint()
 
     def wheelEvent(self, ev):
-        if ev.orientation() == Qt.Vertical:
+        if ev.angleDelta() == Qt.Vertical:
             mods = ev.modifiers()
             if Qt.ControlModifier == int(mods):
-                self.zoomRequest.emit(ev.delta())
+                self.zoomRequest.emit(ev.angleDelta())
             else:
                 self.scrollRequest.emit(
                     ev.delta(), Qt.Horizontal if (
                         Qt.ShiftModifier == int(mods)) else Qt.Vertical)
         else:
-            self.scrollRequest.emit(ev.delta(), Qt.Horizontal)
+            self.scrollRequest.emit(ev.angleDelta(), Qt.Horizontal)
         ev.accept()
 
     def keyPressEvent(self, ev):
         key = ev.key()
         if key == Qt.Key_Escape and self.current:
-            print 'ESC press'
+            print ('ESC press')
             self.current = None
             self.drawingPolygon.emit(False)
             self.update()
@@ -547,6 +548,7 @@ class Canvas(QWidget):
             self.finalise()
 
     def setLastLabel(self, text):
+        print("text ", text)
         assert text
         self.shapes[-1].label = text
         return self.shapes[-1]
@@ -576,7 +578,7 @@ class Canvas(QWidget):
     def loadShapes(self, shapes):
         self.shapes = list(shapes)
         self.shape_type = shapes[0].get_shape_type()
-        print self.shape_type
+        print (self.shape_type)
         self.current = None
         self.repaint()
 

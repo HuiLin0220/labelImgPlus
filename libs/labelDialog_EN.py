@@ -10,7 +10,7 @@ BB = QDialogButtonBox
 class SubListWidget(QDialog):
 
     def __init__(self, parent=None, listItem=None):
-        self.setWindowTitle('选择一个标签')
+        self.setWindowTitle('select a label')
         self.select_text = None
         super(SubListWidget, self).__init__(parent)
         self.listwidget = QListWidget(self)

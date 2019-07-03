@@ -1,7 +1,6 @@
-# LabelImg
-(this repo will not be updated, please visit https://github.com/lzx1413/LabelImgTool )
+# LabelPlus
 
-[![Build Status](https://travis-ci.org/lzx1413/labelImgPlus.svg?branch=master)](https://travis-ci.org/lzx1413/labelImgPlus)
+
 
 LabelImg is a graphical image annotation tool.
 
@@ -31,15 +30,11 @@ Brush SEG mode(in development: brush branch)
 
 ## Build source and use it
 
-Requires at least [Python 2.6](http://www.python.org/getit/) and has been tested with [PyQt4.8](http://www.riverbankcomputing.co.uk/software/pyqt/intro).
-
-In order to build the resource and assets, you need to install pyqt4-dev-tools:
-
 * Ubuntu
 
 `sudo apt-get install pyqt4-dev-tools`
 * Mac
-   install pyqt4 with [instructions](https://robonobodojo.wordpress.com/2017/02/08/installing-pyqt4-on-mac-osx/)
+   install pyqt5
 
 `sudo apt-get install python-opencv`
 
@@ -50,12 +45,6 @@ In order to build the resource and assets, you need to install pyqt4-dev-tools:
 `./labelImg.py`
 
 * Windows
-
-Need to download and setup [Python 2.6](https://www.python.org/downloads/windows/) or later and [PyQt4](https://www.riverbankcomputing.com/software/pyqt/download),lxml,qdarkstyle. You can also try to download the whole neccessary executable files from [my drive](https://copy.com/oyYjFzJwPb4tKl93) and install them.
-
-Open cmd and go to $labelImg, 
-
-`$ pyrcc4 -o resources.py resources.qrc`
 
 `$ python labelImg.py`
 
@@ -93,7 +82,7 @@ support rectangle label and parsing labels
 
 You can edit the [data/predefined_classes.txt](https://github.com/tzutalin/labelImg/blob/master/data/predefined_classes.txt) to load pre-defined classes
 
-You also can create labels with two levels in [data/predefined_sub_classes.txt](https://github.com/lzx1413/labelImg/blob/master/data/predefined_sub_classes.txt) 
+You also can create labels with two levels in [data/predefined_sub_classes.txt](https://github.com/runhang/labelImgPlus/blob/master/data/predefined_sub_classes.txt) 
 
 And the labels will be ranked by the frequency you use it.
 
@@ -140,10 +129,10 @@ open File   -->ChangedDefaultSavedAnnotationDir(ctrl+r) to set the folder to sav
 2. if your settings are right,you will find the **Get Images** button becomes enabled and click it ,then you can annotate the images as before
 
 ### Change list
+2019-07-03 support pyqt5 and python 3
 17-08-14  add class label function
 
 ### Todo list
-* support pyqt5 and python 3
 * add more functions while adding parsing labels
 * refine the setting functions
 

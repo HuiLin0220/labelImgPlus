@@ -8,7 +8,7 @@ def ustr(x):
         if type(x) == str:
             return x.decode('utf-8')
         if type(x) == QString:
-            return unicode(x)
+            return str(x)
         return x
     else:
         return x # py3
