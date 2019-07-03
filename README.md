@@ -130,6 +130,7 @@ open File   -->ChangedDefaultSavedAnnotationDir(ctrl+r) to set the folder to sav
 
 ### Change list
 2019-07-03 support pyqt5 and python 3
+
 17-08-14  add class label function
 
 ### Todo list
