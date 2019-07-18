@@ -3,6 +3,7 @@
 
 
 LabelImg is a graphical image annotation tool.
+**This project is not updated with new functions now. More functions are supported with LabelImgTool Project(https://github.com/lzx1413/LabelImgTool)**
 
 It is written in Python and uses Qt for its graphical interface.
 
