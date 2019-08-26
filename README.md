@@ -29,6 +29,11 @@ Brush SEG mode(in development: brush branch)
 
 ![](screenshot/brush_task.jpg)
 
+## Release software for windows
+[baiduyun](https://pan.baidu.com/s/1iREYsJiQCzPPZGf6dFvauw)
+
+[googledriver](https://drive.google.com/open?id=118bUKQGlfwLgRTpptNzgBijJneInvw7T)
+
 ## Build source and use it
 
 * Ubuntu
